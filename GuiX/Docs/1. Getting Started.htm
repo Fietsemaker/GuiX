@@ -1,0 +1,123 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="css/normalize.css" rel="stylesheet" type="text/css" />
+<link href="css/main.css" rel="stylesheet" type="text/css" />
+<title>GuiX - Getting Started</title>
+</head>
+
+<body>
+<div class="section">
+
+<div class="title">Getting Started</div>
+<h2>Quick summary</h2>
+<p>This section is of interest to developers who want to start using GuiX. It describes which GuiX library files and header files to include in your C++ project, and how to integrate GuiX in to your own framework through use of the application interfaces.</p>
+
+<h1>Including the GuiX libraries</h1>
+
+<h2>Library contents</h2>
+<p>GuiX is maintained using Visual Studio 2008, and prebuilt library files compiled with VS2008 are supplied with GuiX. They can be found in the following location:</p>
+
+<div class="snippet"><p>
+/Bin/GuiX_s.lib     <em>(static, release)</em>
+/Bin/GuiX_sd.lib    <em>(static, debug)</em>
+</p></div>
+
+<p>GuiX does not have any dependancies on external libraries; including these GuiX library files in your project will be enough to start using GuiX. If you want to build the library files yourself, there are project and solution files included for both Visual Studio 2008 and Visual Studio 2012. They can be found in the following location:</p>
+
+<div class="snippet"><p>
+/Build/VS2008/
+/Build/VS2012/
+</p></div>
+
+<h2>Build settings</h2>
+<p>The prebuilt library files are compiled as static libraries. If you want to use the GuiX as a dynamic linked library, you can build the GuiX library with the <i>DLL Release</i> or <i>DLL debug</i> configuration. These configurations have build settings that define the <em>GUIX_EXPORT</em> preprocessor macro, which makes sure all the API classes and functions are marked with <em>dllexport</em>.</p>
+
+<h1>Including the GuiX headers</h1>
+
+<p>The following directory contains the header files that make up the GuiX API:</p>
+
+<div class="snippet"><p>
+/Include/GuiX/GuiX/
+</p></div>
+
+<p>The include folder is structured this way because all GuiX include directives use the following format:</p>
+
+<div class="snippet"><p>
+#include &lt;GuiX/[header name]&gt;
+</div></p>
+
+<p>Therefore, make sure the top GuiX folder is set as the include folder for your project instead of the nested GuiX subfolder in order for the GuiX include directives to work correctly.</p>
+
+<h1>Integrating GuiX into your code base</h1>
+
+<h2>Requirements</h2>
+<p>GuiX is platform and framework independent by design. You can integrate GuiX into pretty much any other C++ framework or game engine, as long as your are able to supply GuiX with a render interface for basic rendering operations such as creating textures and drawing 2D geometry. There is also an interface for system operations such as accessing the clipboard, which you can optionally implement if you want GuiX to provide additional features such clipboard support. Finally, there is a file interface, which has a default implementation that you can override if your system does not support file operations from the standard C libary.</p>
+
+<h2>First option - using the Win32 Framework</h2>
+<p>If you are developing for Win32 with OpenGL you are in luck, because GuiX comes with a Win32/OpenGL framework. If you do not wish to use the framework or you are developing for something else you will have to implement the render interface yourself, which is explained in the next section.<p>
+
+<p>The Win32 framework is essentially just a thin wrapper around the GuiX library that implements the GuiX application interfaces by using a Win32 window and OpenGL. The GuiX example applications use this framework, but you can use it to develop your own applications as well. Check out the example applications to see how you can use the Win32 Framework to create windows and dialog boxes. To include the Win32 Framework in your project, you have to include one of the following library files:</p>
+
+<div class="snippet"><p>
+/Bin/Win32Framework_s.lib     <em>(static, release)</em>
+/Bin/Win32Framework_sd.lib    <em>(static, debug)</em>
+</p></div>
+
+<p>And the following header files:</p>
+
+<div class="snippet"><p>
+/Include/Win32Framework/GuiX/
+</p></div>
+
+<p>Like the GuiX include folder, the Win32 Framework include folder has a GuiX subfolder that contains the Win32 framework header files.</p>
+
+<h2>Second option - implementing the render interface</h2>
+<p>If you do not wish to use the Win32 Framework supplied with GuiX, you can still use the GuiX library by initializing GuiX with your own render interface. This is an interface with several virtual functions that will be called by GuiX to display the UI graphics. You can implement your own render interface by deriving a class from the <em>GxRenderInterface</em> class, which is declared in:</p>
+
+<div class="snippet"><p>
+#include &lt;GuiX/RenderInterface.h&gt;
+</p></div>
+
+<p>All of the render interface functions have empty dummy implementations, but it is recommended that you at least implement the following functions in order to make sure the standard UI graphics are displayed properly:</p>
+
+<div class="snippet"><p>
+void GetViewSize       ()
+
+void DrawTriangles     (vertices, vertexCount, texture)
+void DrawTriangles     (vertices, vertexCount, indices, indexCount, texture)
+
+void EnableScissorRect (enable)
+void SetScissorRect    (x, y, width, height)
+
+bool GenerateTexture   (outTexture, width, height, pixeldata)
+void ReleaseTexture    (texture)
+</p></div>
+
+<p>There is a reference implementation available in the "Win32 Minimal" example. Unlike the Win32 Framework, which is more complex and feature rich, the Win32 Minimal example aims to demonstrate a minimal and concise implementation of the GuiX render interface using OpenGL, so it is suitable to use as a reference implementation if you are integrating GuiX into your own application.
+
+<h1>Initializing and shutting down GuiX</h1>
+
+<p>GuiX has an initialization and shutdown routine, which are used to initialize and release all GuiX resources respectively. The following code snippet is based on the "Win32 Minimal" example, and demonstrates how to initialize and shut down GuiX:</p>
+
+<div class="snippet"><p>
+void main()
+{
+	<em>// Give GuiX access to the custom render interface.</em>
+	MyRenderInterface renderer;
+	GxCore::SetRenderInterface(&amp;renderer);
+
+	<em>// Initialize the GuiX libraries.</em>
+	GxCore::Initialize();
+
+	<em>// Typically, you application loop would take place here.</em>
+	<em>// After your application is done using GuiX, continue.</em>
+
+	<em>// Release all GuiX resources.</em>
+	GxCore::Shutdown();
+}
+</p></div>
+
+</div> <!-- section -->
+</body>
+</html>

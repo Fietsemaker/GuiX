@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<translations>
+
+<tl id="greeting">welkom bij de GUIX voorbeeld applicatie.</tl>
+<tl id="info">Dit voorbeeld demonstreert GuiXCore features.</tl>
+
+<category id="instructions">
+	<tl id="lang">Gebruik {b}omhoog{/b} en {b}omlaag{/b} om van taal te wisselen. Huidige taal: </tl>
+	<tl id="area">Gebruik {b}links{/b} en {b}rechts{/b} om het tekstveld smaller of breder te maken.</tl>
+</category>
+
+</translations>

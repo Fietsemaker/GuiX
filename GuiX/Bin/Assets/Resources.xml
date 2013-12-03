@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+
+<texture id="Danbo">
+	<path>Assets/Danbo.png</path>
+</texture>
+
+<font id="SegoeJP">
+	<path>Assets/Fonts/SegoeJP.txt</path>
+</font>
+
+<font id="default">
+	<path>Assets/Fonts/SegoeUI.txt</path>
+</font>
+
+<translations id="EN">
+	<path>Assets/LangEN.xml</path>
+</translations>
+
+<translations id="NL">
+	<path>Assets/LangEN.xml</path>
+	<path>Assets/LangNL.xml</path>
+</translations>
+
+</resources>

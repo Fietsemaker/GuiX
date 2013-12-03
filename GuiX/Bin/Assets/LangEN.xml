@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<translations>
+
+<tl id="greeting">welcome to the GUIX example application.</tl>
+<tl id="info">This example demonstrates GuiX core features.</tl>
+
+<category id="instructions">
+	<tl id="lang">Use {b}up{/b} and {b}down{/b} to switch language. Current language: </tl>
+	<tl id="area">Use {b}left{/b} and {b}right{/b} to make the text area smaller or wider.</tl>
+</category>
+
+<tl id="text demo title">
+This is the {GuiX} text demo!
+{now with more options}
+</tl>
+
+<tl id="text demo text">
+The GuiX API for text rendering offers a variety of layout options and features, such as: horizontal and vertical alignment, justification, ellipsis, line/word wrapping, unicode support, text highlighting, color gradients and shadows.
+
+The text rendering also supports inline formatting options such as {i}italic text{/i}, {b}bold text{/b} and {u}underlined{/u} text, through the use of special formatting tags enclosed in {lb} and {rb} brackets. Custom formatting tags can be added by the application to render inline images, such as this {GuiX} tag.
+
+Below is a fragment of text that demonstrates support for unicode text.
+
+「当ゲームは、猛烈に弾幕好きな開発者が、比較的以上弾幕好きなプレイヤーの為に作成いたしました。弾幕ラヴな方はもちろん、シューティングって何が面白いの?って疑問に思っている方も、ぜひプレイしてみてください」
+
+(taken from the Japanese 東方紅魔郷 manual.)
+</tl>
+
+</translations>

@@ -1,0 +1,240 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="css/normalize.css" rel="stylesheet" type="text/css" />
+<link href="css/main.css" rel="stylesheet" type="text/css" />
+<title>GuiX - Core Overview</title>
+</head>
+
+<body>
+<div class="section">
+
+<div class="title">GuiXCore Overview</div>
+<h2>Quick summary</h2>
+<p>This section gives an overview of the core features of the GuiX library. The GuiX library contains a number of general purpose functions and classes that are used internally for operations such as rendering, data manipulation and resource management. However, your application can make use of them as well, so it might be worthwile to check them out here.</p>
+
+<p>The overview is divided into several categories. These are:</p>
+<ul>
+ <li>Core</li>
+ <li>Input and localization</li>
+ <li>Interfaces</li>
+ <li>Graphics</li>
+ <li>Text rendering</li>
+</ul>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1>Core</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<h2>Initialization and termination</h2>
+
+<p>Initialization and termination happens through the GxCore class, which can be included with the following directive:</p>
+
+<div class="snippet"><p>
+#include &lt;GuiX/Core.h&gt;
+</p></div>
+
+<p>GxCore is used to set up the GuiX application interfaces, and to initialize the GuiX singletons and resources. When the application is done using GuiX, GxCore is also used to shut down the library. This will reset the application interfaces to their default state and release all the GuiX resources. A more detailed description of how the initialization and termination of GuiX works is available in the <i>Getting Started</i> section.</p>
+
+<h2>Shared resources</h2>
+
+<p>Resource management in GuiX is built around the concept of shared resources. There are several types of shared resource classes in the core libary. Some examples of shared resources are the list class, string class, texture class and font class. These classes have a common property: they manage a shared resource by keeping reference count. Whenever the application assigns or copy constructs one of these resource classes, the resource is shared by reference and a deep copy is avoided. The following example demonstrates how shared resources in GuiX work:</p>
+
+<div class="snippet"><p>
+<em>// A new texture is created by loading an image.</em>
+GxTexture first("data/someImage.png");
+
+<em>// A texture is copy contructed, the texture resource is shared by reference.</em>
+GxTexture copy = first;
+
+<em>// A different image is loaded into the first texture.</em>
+<em>// The 'copy' texture is now the sole owner of the original texture resource.</em>
+first = GxTexture("data/otherImage.png");
+</p></div>
+
+<p>Using a system with shared resources for textures and fonts is common in applications, since duplicating those would be very wasteful on application memory. However, the more elementary list and string classes are also shared resources, which might be unexpected. The main advantages of this is that copying and passing around lists and strings is no longer an expensive operation. This allows for writing more natural code and it makes some of the GuiX classes easier to use. For example, the following code snipped demonstrates the advantage of shared string resources:</p>
+
+<div class="snippet"><p>
+<em>// Returns the input string encapsulated by brackets.</em>
+GxString AddBrackets(GxString string)
+{
+	return '[' + string + ']';
+}
+</p></div>
+
+<p>Because strings are copy constructed and assigned by reference, the function from the example does not allocate a new string resource when the string is passes as an argument or returned by the function. String (re)allocation can only occur when the string is modified, which happens when the brackets are added. The downside of shared resources is that there is a small amount of overhead involved when a resource is modified because the ownership has to be resolved first.</p>
+
+<h2>Text encoding</h2>
+
+<p>Text in GuiX is stored in Unicode strings. There are several different ways to encode Unicode strings, the most common being UTF-8, UTF-16 and UTF-32. While each option has its advantages and drawbacks, the strings in GuiX are encoded using UTF-8, for reasons outlined below.</p>
+
+<img src="data/UTF8.png" class="imgInline" />
+
+<p>UTF-8 is a variable-width encoding that encodes character from the Unicode character set to one or more 8-bit values. Unlike UTF-16 and UTF-32, which use at least 2 bytes and 4 bytes per character respectively, UTF-8 will always encode ASCII-characters to a single byte value. This makes UTF-8 the most efficient option for encoding text that is written in English and many other western languages that mainly use the latin alphabet. Even in texts written in a language with many characters outside the ASCII range, such as Cyrillic, Greek or Chinese, UTF-8 encoding rarely takes up significantly more memory than UTF-16 and never more than UTF-32.</p>
+
+<p>Another useful property of UTF-8 strings is that they are stored as a sequence of 8-bit values that are a superset of ASCII. This means that any valid ASCII string is also a valid UTF-8 string. This is a great property for a library API because it makes it very easy to use, even for developers that have limited or no understanding of character encoding. Because UTF-8 strings are compatible with ASCII, GuiX strings can be constructed directly from raw C strings and <em>std::string</em> objects as long as they contain only valid ASCII characters. Converting to GuiX strings from UTF-16, UTF-32 and wide strings is also possible with the GuiX unicode utilities (as long as the wide string is encoded in UTF-16).</p>
+
+<p>The <em>GxString</em> class and utilities for converting between different Unicode character encodings can be included with the following directives:</p>
+
+<div class="snippet"><p>
+#include &lt;GuiX/String.h&gt;
+#include &lt;GuiX/Localize.h&gt;
+</p></div></p>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1>Input and localization</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<h2>Keyboard and mouse input</h2>
+<p>GuiX has its own enumeration of keyboard keys and mouse buttons. The application can use these to send keyboard and mouse input events to the GuiX library. This is done by using the <em>GxInput</em> singleton, which can be included with the directive:
+
+<div class="snippet"><p>
+#include &lt;GuiX/Input.h&gt;
+</p></div>
+
+<p>Calling the input functions such as <em>OnKeyPress()</em>, <em>OnTextInput()</em> and <em>OnMouseScroll()</em> will cause several things to happen inside the GuiX core library. First, the global keyboard/mouse state is updated. This state keeps track of data such as which keys and mouse buttons are down and the mouse position. Second, an input event is sent to all registered listener objects. GuiX has its own listeners that receive input events, but the application is free to add listeners as well.</p>
+
+<h2>Localization</h2>
+<p>GuiX offers support for localization using XML files with translation strings. Using this system is completely optional, as all text labels in GuiX objects can be set directly with strings of text. The localization class simply offers a mechanism for retrieving strings with translated messages from one or more XML translation files based on a translation name and/or category. The snippet below demonstrates what a typical XML translation file might look like:</p>
+
+<div class="snippet"><p>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;translations&gt;
+
+&lt;tl id=&quot;greeting&quot;&gt;<em>welcome to the GUIX example application.</em>&lt;/tl&gt;
+&lt;tl id=&quot;info&quot;&gt;<em>This example demonstrates GuiX core features.</em>&lt;/tl&gt;
+
+&lt;category id=&quot;info text&quot;&gt;
+  &lt;tl id=&quot;lang&quot;&gt;<em>Use [up] and [down] to switch language.</em>&lt;/tl&gt;
+  &lt;tl id=&quot;area&quot;&gt;<em>Use [left] and [right] to make the text area smaller or wider.</em>&lt;/tl&gt;
+&lt;/category&gt;
+
+&lt;/translations&gt;
+</p></div>
+
+<p>Using the GuiX localization system is very straightforward. The translations in the XML file are identified by a name and possibly a category name. Calling the global <em>GxTr()</em> function with correct name and category will return the corresponding translation. If the translation does not exist, the name argument is returned. The localization singleton and translation functions can be included with the directive:</p>
+
+<div class="snippet"><p>
+#include &lt;GuiX/Localize.h&gt;
+</p></div></p>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1>Interfaces</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<h2>Description</h2>
+<p>The GuiX library is designed to be platform independent. To achieve this, GuiX performs all its platform depentdent operations trough several low level interfaces referred to as the <i>application interfaces</i>. These interfaces contain virtual functions for a variety of operations used by GuiX. Before GuiX is initialized, the application can override one or more of the interfaces with a custom implementation. GuiX classes will then use this custom interface to perform platform specific tasks such as rendering and file reading. The following diagram describes the interaction between the GuiX core library and the application:</p>
+
+<img src="data/coreArchitecture.png" class="imgInline" />
+
+<p>Which application interfaces and which functions need to be implemented depends on the requirements of the application. For example, if the application wishes to provide clipboard support for text input boxes, it will need to provide an implementation of the clipboard set and get functions in the System interface. Even without implementing the clipboard functions in the system interface, GuiX text input boxes will still work fine. However, clipboard functionality will be disabled. The same principle applies to the other interfaces.</p>
+
+<h2>Render interface</h2>
+<p>The Render interface is the most important application interface used by GuiX. Strictly speaking it is not required to implement the Render interface, but GuiX will not be very useful without it. If the Render interface is not implemented by the application, GuiX will not be able to perform any rendering operations. The implementation can be supplied to GuiX with the <em>GxCore</em> function:</p>
+
+<div class="snippet"><p>
+GxCore::SetRenderInterface(GxRenderInterface* renderInterface);
+</p></div>
+
+<h2>System interface</h2>
+<p>The System interface is a utility interface that enhances some of the GuiX features. It is mainly used by GuiX for logging messages and accessing the clipboard. Implementing the System interface is optional. If clipboard support and/or GuiX log messages are not interesting to you, implementing the System interface can be skipped completely. The implementation can be supplied to GuiX with the <em>GxCore</em> function:</p>
+
+<div class="snippet"><p>
+GxCore::SetSystemInterface(GxSystemInterface* systemInterface);
+</p></div>
+
+<h2>File interface</h2>
+<p>The File interface is used by GuiX for all file reading operations. Unlike the other two interfaces, this interface comes with a fully functional default implementation that uses IO functions from the standard C library. If the application uses a file IO mechanism that is different from the standard C library, the interface can be overwritten. Other than that, implementing the File interface is optional and can be skipped completely. The implementation can be supplied to GuiX with the <em>GxCore</em> function:</p>
+
+<div class="snippet"><p>
+GxCore::SetFileInterface(GxFileInterface* fileInterface);
+</p></div>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1>Graphics</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<h2>Description</h2>
+<p>The GuiX gui library does not use any native platform widgets or forms. Instead, all widgets are rendered through the application render interface. The render interface is low level and renders simple colored and/or textured triangles. This makes it easy to implement, but at the same time hard to work with when you want to perform high level operations such as rendering sprites and text. To provide more accesible high level rendering operations, the GuiX library has a variety of graphics utilities and classes. The rendering operations are processed inside GuiX, batched and finally passed on to the low level render interface.</p>
+
+<h2>Image loading</h2>
+<p>All textures used by GuiX are loaded or generated through the application render interface. This means the application is free to choose whatever image format or texture format it wants to use. GuiX simply requests a texture from either a path to an image file or a raw RGBA pixel buffer, and the application returns an abstract texture handle which is then used by GuiX in other rendering operations to identify the texture.</p>
+
+<p>Assigning the role of texture creation to the application render interface gives developers freedom to use their own formats, but implementing texture loading from image files can be bothersome. You can check out the Win32 Framework or the Win32 Minimal example to grab an existing implentation of texture loading using the image loading API from <a href="http://nothings.org/stb_image.c">http://nothings.org/stb_image.c</a> for convenience.</p>
+
+<h2>Sprites and tiles</h2>
+<p>A large number of widgets have a visual frame that scales in one or more directions. The GuiX core library provides convenient tools for drawing such frames through the use of three classes that draw textures: the <em>GxSprite</em> class, the <em>GxTileBar</em> class and the <em>GxTileRect</em> class. The following image illustrates how these classes behave when resized:</p>
+
+<img src="data/graphics.png" class="imgInline" />
+
+<p>The sprite class is the old familiar sprite that can be found in many other 2D graphics libraries and engines. It renders a texture and has several properties such as size, rotation and color. Scaling a sprite in horizontal and/or vertical direction will stretch the texture.</p>
+
+<p>The tile bar class draws a texture, much like the sprite class, but has an additional property. It subdivides the texture horizontally into three tiles based on two UV offsets. These offsets determine where the stretching middle section of the texture begins and ends. When the tile bar is drawn, the middle section is expanded or shrunken according to the length of bar that is drawn. The left and right end are always drawn with a fixed width.</p>
+
+<p>The tile rect class uses the same concept of stretching tiles, but applies it in two directions. You might already be familiar with it, because it is sometimes referred to as a 9-patch or nine-patch, for example in Android development. The tile rect consists of nine tiles: four corners that have a fixed size, four edges that stretch in one direction and one middle section that stretches in both directions.</p>
+
+<h2>Canvas</h2>
+<p>GuiX gui does not use external image files for its graphics. Instead, it generates sprite, tile bar and tile rect textures based on a simple color scheme for the purpose of drawing widgets. To generate these textures, it uses the <em>GxCanvas</em> class.</p>
+
+<p>The <em>GxCanvas</em> class provides a pixel buffer that is used as a canvas to draw shapes on. The drawing process uses the CPU and does per-pixel evaluation, which makes it unsuitable for real time rendering. This is not really an issue, because the main purpose of the canvas is to render once and to use the resulting pixel buffer to generate a texture. The shapes drawn on the canvas are high quality, anti-aliased and have a variety of effects available such as outline, inner/outer glow, fill, gradients and several blend modes. The following code snippet demonstrates a set up to generate a texture with a canvas. The resulting image is displayed in the top right.</p>
+
+<img class="img" src="data/canvas.png" />
+
+<div class="snippet"><p>
+<em>// Create the canvas</em>
+GxCanvas canvas(96, 96);
+canvas.Clear(GxColor(255, 255, 255));
+
+<em>// Yellow center</em>
+canvas.SetColor(GxColor(255, 255, 0));
+canvas.Circle(48, 48, 20);
+
+<em>// Orange outer glow</em>
+canvas.SetColor(GxColor(255, 128, 0));
+canvas.SetOuterGlow(8);
+canvas.SetFill(false);
+canvas.Circle(48, 48, 20);
+
+<em>// Gradient line through the middle</em>
+canvas.SetColor(GxColor::WHITE, GxColor::BLUE);
+canvas.SetOuterGlow(0);
+canvas.SetFill(true);
+canvas.Line(16, 16, 80, 80, 4);
+
+<em>// Generate a texture from the canvas</em>
+GxTexture texture = canvas.CreateTexture();
+</p></div>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1>Text rendering</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<h2>Description</h2>
+<p>Text rendering is a very important part of the GuiX core library. Text rendering in GuiX is self contained and does not use external functions or libraries. It has support for rendering Unicode text, is efficient enough to render large portions of text in real time through the application render interface, and offers a variety of effects and layout properties. The fonts used by GuiX have a custom format based on a text file with glyph information and one or more glyph page images. A tool is supplied with GuiX to generate GuiX font files from other font files with commonly used formats such as TrueType and OpenType.</p>
+
+<h2>Font conversion</h2>
+<p>The first step to text rendering in GuiX is to convert font resources to a format that GuiX can use. Most modern formats for storing font data such as TrueType use splines and outline information to define the shape of a glyph. This shape needs to be rasterized and converted to an image first, so that GuiX core can render glyphs as a series of quads composed of two textured triangles. This rasterization takes place in the GuiX FontBuilder application, where GuiX font files are generated from original font resources.</p>
+
+<img class="img" src="data/SegoeUI.png" />
+
+<p>When the GuiX FontBuilder converts a font resource to a GuiX font, it rasterizes a set of unicode characters to one or more glyph page textures. The character set determines which characters will included in the generated GuiX font. It is set is set to "Basic Latin" and "Latin-1 Supplement" by default, but if you want to support languages with a non-Latin alphabet such as Greek or Chinese, you can add additional Unicode Blocks to the character set such as "Greek and Coptic" and "CJK Unified Ideographs" or even custom Unicode ranges. The image in the top right displays a glyph page texture generated by the FontBuilder. The example glyph page contains glyphs for the default character set and a fallback question mark box glyph for rendering characters that are not supported by the font.</p>
+
+<h2>Glyph information</h2>
+<p>Apart from the image files that contain the glyph page textures, the FontBuilder also exports a text file with glyph information. This file contains information about the dimensions of the glyph links the glyphs to the correct unicode characters. The following snippet demonstates the contents of such a file:
+
+<div class="snippet"><p>
+size 14
+
+page "SegoeUI.png"
+style normal
+g 0 11 232 38 8 11 1 -12
+g 13 0 0 0 0 0 0 0
+g 32 4 0 0 0 0 0 0
+g 33 4 140 51 2 10 1 -10
+g 34 5 40 166 4 3 1 -10
+(...)
+</p></div>
+
+</div> <!-- section -->
+</body>
+</html>

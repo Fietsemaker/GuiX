@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\..\Source\Win32Framework\Src\stb_image.c">
+      <Filter>Interfaces\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Win32Framework\Src\RenderInterfaceGL.cpp">
+      <Filter>Interfaces\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Win32Framework\Src\SystemInterfaceWin32.cpp">
+      <Filter>Interfaces\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Win32Framework\Src\ApplicationWin32Imp.cpp">
+      <Filter>Framework\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Win32Framework\Src\WindowWin32Imp.cpp">
+      <Filter>Framework\Src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Include\Win32Framework\GuiX\RenderInterfaceGL.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\Win32Framework\GuiX\SystemInterfaceWin32.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\Win32Framework\GuiX\ApplicationWin32.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\Win32Framework\GuiX\WindowWin32.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Win32Framework\Src\stb_image.h">
+      <Filter>Interfaces\Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Win32Framework\Src\ApplicationWin32Imp.h">
+      <Filter>Framework\Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Win32Framework\Src\WindowWin32Imp.h">
+      <Filter>Framework\Src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Framework">
+      <UniqueIdentifier>{750eec10-5f24-4595-94fe-510deaefd60f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interfaces">
+      <UniqueIdentifier>{8cf91aac-7a7b-4cea-a883-4c660b515089}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interfaces\Src">
+      <UniqueIdentifier>{ebf52dd2-a36c-4db3-b810-13e9a6515e61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Src">
+      <UniqueIdentifier>{a4c9ceb9-4ef6-4fed-a695-95b2e856050f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

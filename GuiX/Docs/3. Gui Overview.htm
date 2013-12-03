@@ -1,0 +1,154 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="css/normalize.css" rel="stylesheet" type="text/css" />
+<link href="css/main.css" rel="stylesheet" type="text/css" />
+<title>GuiX - Gui Overview</title>
+</head>
+
+<body>
+<div class="section">
+
+<div class="title">GuiXGui Overview</div>
+<h2>Quick summary</h2>
+<p>The second GuiX library, GuiXGui, is built upon GuiXCore and provides classes for creating graphical user interfaces. The largest part of the GuiXGui documentation is devoted to the widget classes; descriptions of all the widget classes in alphabetical order can be found in the Widget Dictionary section. However, there are also some general concepts related to the GuiX gui architecture such as the widget base class, gui styles, layouts and callbacks. These will be described here.</p>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1>Widget base class</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<h2>Description</h2>
+<p>All GuiX widgets are derived from the <em>GxWidget</em> base class. The widget base class provides a variety of simple features such as a tooltip text and highlight value, but the main purpose of the widget class is to creating a system that allows widgets to be arranged based on some generic layout properties. These layout properties are stored in a <em>GxSizePolicy</em> structure. In GuiX, each widget is conceptually a 2D rectangle, and the size policy contains information about how this rectangle behaves when it is resized. The second most important purpose of the widget base class is to create a system for sending and receiving events. This is done with virtual functions; when a widget wants to process certain input events such as a key press or a mousewheel scroll it can overload the corresponding event function with custom behaviour.</p>
+
+<h2>Size policies</h2>
+<p>Every widget has a size policy. The size policy is a struct that encapsulates all variables related to the resizing behaviour of the widget. These values are important when widgets are part of a layout, because they affect how space is distributed between widgets inside the layout area. Layouts will be discussed more later. The size policy struct contains the following data:</p>
+<ul>
+ <li>preferred size</li>
+ <li>mimimum size</li>
+ <li>maximum size</li>
+ <li>size policy flags</li>
+ <li>stretch factor</li>
+</ul>
+<p>The preferred size, minimum size and maximum size should be fairly self explanatory. When a layout is trying to determine how much space it needs, it will look at the preferred size of its widgets to see what the optimal size of the layout would be. If the available space ends up being more or less than the optimal size, widgets will be shrunken or expanded up to the minimum and maximum size. Which widgets are resized and how much both depend on the size policy flags and the stretch factors of all the widgets in the layout.</p>
+
+<p>The size policy flags determine what resizing operations are allowed, and the priority in which widgets are resized. There are three size policy flags:</p>
+<ul>
+ <li><em>SHRINK:</em> The widget is allowed to shrink beyond its preferred size, but will only do so if necessary.</li>
+ <li><em>GROW:</em> The widget is allowed to grow beyond its preferred size, but will only do so if necessary.</li>
+ <li><em>EXPAND:</em> The widget is greedy and will grow whenever space is available.</li>
+</ul>
+<p>Widgets can have one or more of these flags set. There is also a special flag state called <em>FIXED</em>, which is the absence of flags and indicates the widget has a fixed size. There are a few common size policy flag combinations used by many widgets. There are combined into enum values called size policy types. These are:</p>
+<ul>
+ <li><em>FIXED (FIXED)</em></li>
+ <li><em>SHRINK (SHRINK)</em></li>
+ <li><em>RESIZE (SHRINK | GROW)</em></li>
+ <li><em>EXPAND (SHRINK | GROW | EXPAND)</em></li>
+</ul>
+<p>The following image demonstrates how widgets with different size policy types behave.</p>
+
+<img src="data/sizepolicy.png" class="imgInline" />
+
+<p>The first three rectangles on the left side of the image contain three widgets with different size policies arranged in a vertical list. The widgets all have the same preferred size, so when the layout has its optimal size the widgets are all assigned the same potion of free space. In the second rectangle, there is extra space available. Both the resizing and expanding widget are allowed to grow to fill up that space, but it is assigned entirely to the expanding widget because the expand flag is greedy. In the third rectangle, the available space is less than the optimal size. This means one or more widgets need to be shrunken down until all widgets fit the available space. Both the resizing and expanding widget have the <em>SHRINK</em> flags set, so an equal amount of space will be taken from both to shrink down the list.</p>
+
+<p>Finally, there is also the stretch factor. When space is divided among growing or expanding widgets, the stretch fector decides how much space is allotted to each widget. The portion of space is equal to the stretch factor of the widget divided by the sum of all stretch factors. The fourth rectangle in the image above demonstrates a list of two expanding widgets with different stretch factors. The sum of stretch factors is 3.0, so the first widget will receive 1/3 of the extra space, and the second widget will receive 2/3 of the extra space.</p>
+
+<h2>Input events</h2>
+<p>The GuiX gui context listens to keyboard and mouse input, and passes on input events to the widgets. These events are received by the virtual input event functions, which are easily recognizeable because they start with the prefix "<em>On</em>". Examples are: <em>OnMousePress()</em>, <em>OnTextInput()</em> and <em>OnLoseFocus()</em>. Typically, widgets are only interested in a a few or even none of the input events, so most of the widget classes only overload a select number of the input event functions.</p>
+
+<p>Inside the gui context, widgets are ordered hierarchically in a tree structure. When the context sends input events to the widgets, the order in which the widgets process the event is always from leaves to root. This means the leaf widgets have access to the event first, and get the opportunity to flag the event as handled first as well. Even if the event is flagged as handled, the event will still be received by the other widgets; it is up to the widget logic to decide wether to process or to ignore handled events. Widgets that are hidden will never receive input events.</p>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1>Gui styles</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<h2>Description</h2>
+<p>In GuiX, widgets are drawn with colors and graphics from the global gui style. The gui style is contained in the <em>GxStyle</em> class and is essentially just a collection of colors, sprites, tile rects and tile bars. All widgets have access to the global gui style and use it at their own discretion to draw themselves. The following image demonstrates two of the standard GuiX gui styles, white and black.</p>
+
+<img src="data/colorschemes.png" class="imgInline" />
+
+<h2>Modifying styles</h2>
+<p>Since the global gui style is just collection of colors and graphics, changing the gui style is as easy as modifying the color scheme and the graphics objects. This can be done in real time as well, so changes to the global style will instantly be reflected in the rendering of the widgets. Keep in mind though, that most of the graphics objects in the style are generated based on the color scheme, and changing the color scheme will not automatically update the graphics objects.</p>
+
+<p>A style can be constructed based on either a standard color scheme from GuiX, or a custom color scheme. The contructor will then use the provided color scheme to generate textures for the graphics objects. Apart from the constructors, the style class also has some utility functions that make the drawing of common style elements such as labels and buttons more convenient.</p>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1>Layouts and forms</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<h2>Description</h2>
+<p>Together with widgets, layout objects form an integral part of the GuiX gui architecture. If widgets are considered the building block of a form, layouts can be seen as the glue that holds them together. In GuiX, layouts take care of arranging widgets inside a rectangle based on some basic rules combined with the size policies of the widgets. The most common layout object is a list layout, which arranges widgets in either a vertical or horizontal list, but other layout types exist as well.</p>
+
+<h2>Adjust and Arrange</h2>
+<p>Like with widget classes, all layout classes in GuiX are derived from a layout base class. This base class does not impose any rules or restrictions on the arrangement of widgets. The main role of the base class is to provide several virtual functions that are called when the gui context is updated. The most important of these are <em>Adjust()</em> and <em>Arrange()</em>, which correspond to two phases in the gui context update cycle.</p>
+
+<p>In the first phase, the layout is allowed to adjust its size properties based on the widgets it contains. Generally, the layout object will determine how much space it needs by doing a mock up arrangement of the widgets according to their preferred size and computing the total width and heigth required for this arrangement. The layout can also use this phase to adjust its size policy flags. For example, if one or more of the widgets inside the layout have an expand flag, the layout will set the expand flag as well. Essentially, the adjust phase does actually arrange the widget but calculates data relevant to the arrangement such as minimum size, preferred size and size policy flags.</p>
+
+<p>In the second phase, the layout receives a rectangular portion of the view area and is tasked to arrange its widgets inside that area. The dimensions of the area will be based on the data that was calculated in the adjust phase, but the sizes may not necessarily be the same. For example, a list layout may calculate a preferred height of 300 pixels in the adjust phase but only receive 200 pixels in the arrange phase because there is less than 300 pixels available. When the preferred size and the actual size of the view area do not match, the layout will try its best to arrange the widgets by shrinking or expanding them when appropriate.</p>
+
+<h2>The widget hierarchy</h2>
+<p>Widgets and layouts are combined together to create a tree structure that is the widget hierarchy. A layout can not contain other layouts, so nested layouts are generally embedded in a frame widget or another container widget like the groupbox or dock. The following image demonstrates a simple widget hierarchy. When arranged, the widgets and layouts create the form on the right side of the image.</p>
+
+<img src="data/layouts.png" class="imgInline" />
+
+<p>In this example, the Frame widget is the root widget of the hierarchy. The Sliders, Labels, Spinner and Button are the leaf widgets. Both the Frame widget and the Groupbox widget are container widget that have a layout object to arrange their children. The Frame has a horizontal list layout, which arranges all the children horizontally from left to right. The Groupbox has a grid layout with 2 columns, which fills rows from left to right, and stacks rows top to bottom. The code snippet below demonstrates how to set up a form like this:</p>
+
+<div class="snippet"><p>
+<em>// Create the groupbox.</em>
+GxGroupbox* box = new GxGroupbox;
+box-&gt;SetLayout(new GxGridLayout(2));
+box-&gt;Add(new GxLabel("Foo"));
+box-&gt;Add(new GxSpinner);
+box-&gt;Add(new GxLabel("Bar"));
+box-&gt;Add(new GxButton);
+
+<em>// Create the root frame.</em>
+GxFrameH* root = new GxFrameH;
+root-&gt;Add(new GxSliderV);
+root-&gt;Add(new GxSliderV);
+root-&gt;Add(box);
+
+<em>// Assign the root widget to a gui context.</em>
+myContext-&gt;SetRoot(root);
+<p></div>
+
+<p>Because the gui context and widgets take ownership of their children, the application does not have to keep track of the widgets that are created. The application can simply create new widgets and add them to a container widget or a layout; the widgets will make sure their children are deleted when their own lifespan ends.</p>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1>Events and callbacks</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<h2>Description</h2>
+<p>When the user interacts with a widget, the widget will generally emit an event. Some events trigger once per user action, like a button press event. Other events trigger on every frame while the user is still continuing the action, such as the slider changed event that occurs when the user is dragging a slider. When a widget emits an event, the callback attached to that widget is executed and receives the event. If the widget does not have a callback, the event is propagated up the widget hierarchy until a callback is reached, all the way up to the root widget. This gives developers the freedom to choose where and how many callbacks are used to handle widget events; individual callbacks per widget will work, but a catch-everything callback on the root widget will work just as well.</p>
+
+<h2>Handling events</h2>
+<p>The structure of GuiX widget events is very simple. Each event contains the same fields: a string with the id of the widget that sent it, a string with the event type and a variant that contains additional event data. The contents of the variant depend on the type of event that was sent, and is indicated in the event description. The following code snippet contains an example of an event from the class declaration of the spinner widget:</p>
+
+<div class="snippet"><p>
+<em>/// Emitted when the user changes the spinner value.</em>
+<em>/// value: double, the new spinner value.</em>
+static const char* eChanged;
+</p></div>
+
+<p>As you can see, the event declaration is nothing more than a pointer to a string that itentifies the event. The type field of all spinner changed events will contain a string equivalent to the string from this declaration. The description also mentions that the variant of the event value will be of type double, and will contain the new spinner value. The following code snippet demonstrates a callback which can handle the spinner changed event:
+
+<div class="snippet"><p>
+class MyCallback : public GxCallback
+{
+public:
+    void OnEvent(const GxWidgetEvent&amp; event)
+    {
+        <em>// Is it a spinner changed event?</em>
+        if(event.type == GxSpinner::eChanged)
+        {
+            <em>// It it, so the event value contains the new spinner value.</em>
+            double newValue = event.value.ToDouble();
+        }
+    }
+};
+</p></div>
+
+<p>If the source of the event is always unambiguous, for example when the callback can only receive events from one spinner, checking the event type will suffice. However, if the callback can receive events from multiple widgets of the same type, the events need to be identified by widget id as well. In this case, the application can use the <em>SetWidgetId()</em> function on widgets to assign them an id string. This string is passed in the <em>event.id</em> field.</p>
+
+</div> <!-- section -->
+</body>
+</html>

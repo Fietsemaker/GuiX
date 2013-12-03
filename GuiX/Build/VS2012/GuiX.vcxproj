@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="DLL Debug|Win32">
+      <Configuration>DLL Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DLL Release|Win32">
+      <Configuration>DLL Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Lib Debug|Win32">
+      <Configuration>Lib Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Lib Release|Win32">
+      <Configuration>Lib Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{39F7F761-762E-4167-80FB-78C106F29D1E}</ProjectGuid>
+    <RootNamespace>GuiX</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Lib Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Lib Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Lib Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Lib Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>11.0.50727.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Lib Release|Win32'">
+    <OutDir>$(ProjectDir)..\..\Bin\</OutDir>
+    <IntDir>$(ProjectDir)..\..\Bin\tmp\$(ProjectName)_s\</IntDir>
+    <TargetName>$(ProjectName)_s</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Lib Debug|Win32'">
+    <OutDir>$(ProjectDir)..\..\Bin\</OutDir>
+    <IntDir>$(ProjectDir)..\..\Bin\tmp\$(ProjectName)_sd\</IntDir>
+    <TargetName>$(ProjectName)_sd</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">
+    <OutDir>$(ProjectDir)..\..\Bin\</OutDir>
+    <IntDir>$(ProjectDir)..\..\Bin\tmp\$(ProjectName)_d\</IntDir>
+    <TargetName>$(ProjectName)_d</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">
+    <OutDir>$(ProjectDir)..\..\Bin\</OutDir>
+    <IntDir>$(ProjectDir)..\..\Bin\tmp\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Lib Release|Win32'">
+    <ClCompile>
+      <Optimization>Full</Optimization>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>..\..\Include\GuiX;..\..\Source\GuiX;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG; WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <PrecompiledHeader />
+      <BrowseInformation />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>None</DebugInformationFormat>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(TargetPath)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Lib Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>..\..\Include\GuiX;..\..\Source\GuiX;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>DEBUG; WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>false</StringPooling>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <PrecompiledHeader />
+      <BrowseInformation />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(TargetPath)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>..\..\Include\GuiX;..\..\Source\GuiX;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>DEBUG; WIN32; GUIX_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>false</StringPooling>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <PrecompiledHeader />
+      <BrowseInformation />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(TargetPath)</OutputFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">
+    <ClCompile>
+      <Optimization>Full</Optimization>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>..\..\Include\GuiX;..\..\Source\GuiX;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG; WIN32; GUIX_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <PrecompiledHeader />
+      <BrowseInformation />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>None</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(TargetPath)</OutputFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\Common.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\Core.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\Input.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\Interfaces.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\List.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\Localize.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\Resources.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\String.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\Variant.h" />
+    <ClInclude Include="..\..\Source\GuiX\Src\CoreImp.h" />
+    <ClInclude Include="..\..\Source\GuiX\Src\InputImp.h" />
+    <ClInclude Include="..\..\Source\GuiX\Src\LocalizeImp.h" />
+    <ClInclude Include="..\..\Source\GuiX\Src\ResourcesImp.h" />
+    <ClInclude Include="..\..\Source\GuiX\Src\Xml.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\Canvas.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\Draw.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\Sprites.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\Text.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\Texture.h" />
+    <ClInclude Include="..\..\Source\GuiX\Src\DrawImp.h" />
+    <ClInclude Include="..\..\Source\GuiX\Src\ResourceMap.h" />
+    <ClInclude Include="..\..\Source\GuiX\Src\TextImp.h" />
+    <ClInclude Include="..\..\Source\GuiX\Src\TextureImp.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\Container.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\Context.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\Layout.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\Style.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\Widget.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\Widgets.h" />
+    <ClInclude Include="..\..\Source\GuiX\Src\ContextImp.h" />
+    <ClInclude Include="..\..\Source\GuiX\Src\GuiUtils.h" />
+    <ClInclude Include="..\..\Source\GuiX\Src\StyleImp.h" />
+    <ClInclude Include="..\..\Source\GuiX\Src\WidgetDatabase.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wButton.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wCheckbox.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wColorEdit.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wColorPicker.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wDroplist.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wExpandingButton.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wImageBox.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wLabel.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wRadioButton.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wScrollbar.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wSelectList.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wSeperator.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wSlider.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wSliderEdit.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wSliderRange.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wSpacer.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wSpinner.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wTextEdit.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wVectorEdit.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wDock.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wFrame.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wGroupbox.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wScrollArea.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wTabs.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\FreeLayout.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\GridLayout.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\ListLayout.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\Config.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Source\GuiX\Src\CoreImp.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\Font.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\InputImp.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\Interfaces.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\LocalizeImp.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\ResourcesImp.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\String.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\Variant.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\Xml.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\Canvas.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\DrawImp.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\Sprites.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\TextImp.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\TextureImp.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\Container.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\ContextImp.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\Layout.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\styleImp.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\Widget.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\WidgetDatabase.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\wButton.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\wCheckbox.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\wColorEdit.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\wColorPicker.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\wDroplist.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\wExpandingButton.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\wImageBox.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\wLabel.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\wRadioButton.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\wScrollbar.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\wSelectList.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\wSeperator.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\wSlider.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\wSliderEdit.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\wSliderRange.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\wSpacer.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\wSpinner.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\wTextEdit.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\wVectorEdit.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\wDock.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\wFrame.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\wGroupbox.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\wScrollArea.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\wTabs.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\FreeLayout.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\GridLayout.cpp" />
+    <ClCompile Include="..\..\Source\GuiX\Src\ListLayout.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Include\GuiX\GuiX\Common.inl" />
+    <None Include="..\..\Include\GuiX\GuiX\List.inl" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

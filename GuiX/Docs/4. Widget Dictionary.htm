@@ -1,0 +1,324 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="css/normalize.css" rel="stylesheet" type="text/css" />
+<link href="css/main.css" rel="stylesheet" type="text/css" />
+<title>GuiX - Widget Dictionary</title>
+</head>
+
+<body>
+<div class="section">
+
+<div class="title">Widget Dictionary</div>
+
+<h2>Quick summary</h2>
+<p>This section contains a list of all the widgets that are available in GuiX, sorted alpabetically. Each widget has a description text, an example image and a list of the events that are emitted by the widget when the user interacts with it.</p>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1>GxButton</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<img src="data/wButton.png" />
+<h2>Description</h2>
+<p>The <em>GxButton</em> widget is used to create a simple push button. It emits an event when the button is pressed and when the button is released. It also has an <em>IsDown()</em> function to check if the button is currently being pressed. Because of this, buttons can be used to trigger an action, such as opening a dialog box, and for continuous actions, such as moving an object. Buttons display a text label to describe their function.</p>
+
+<h2>Events</h2>
+
+<div class="event"><div class="id">ePressed</div><p>Emitted when the user starts pressing the button.</p></div>
+
+<div class="event"><div class="id">eReleased</div><p>Emitted when the user stops pressing the button.</p></div>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1>GxCheckbox</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<img src="data/wCheckbox.png" />
+<h2>Description</h2>
+<p>The <em>GxCheckbox</em> widget is used to create a interactive checkbox. It emits an event when the when checkbox is either checked or unchecked by the user. Checkboxes display a text label on the right side of the box to describe their function.</p>
+
+<p>It is possible to attach a pointer to boolean variable to the checkbox by using the <em>SetVarPtr()</em> function. If a boolean is attached, the checkbox will set that boolean to true whenever the checkbox is checked, and will set it to false whenever it is unchecked.</p>
+
+<h2>Events</h2>
+
+<div class="event"><div class="id">eChanged</div><p>Emitted when the user checks or unchecks the checkbox.</p><div class="value">value: boolean, the new checkbox state. True if checked, false otherwise.</div></div>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1>GxColorEdit</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<img src="data/wColorEdit.png" />
+<h2>Description</h2>
+<p>The <em>GxColorEdit</em> widget is comparable to the color picker, but is more compact and convenient to place inside a list along with other widgets. In collapsed form, the color edit displays a button that displays the selected color. When pressed, the button expands to a list of three slider edits which can be used to modify the RGB (red, green, blue) components of the color value. If the color edit is created with alpha editing set to enabled, the list also has an alpha slider edit.</p>
+<h2>Events</h2>
+
+<div class="event"><div class="id">eChanged</div><p>Emitted when the user changes the color.</p><div class="value">value: GxColorf, the new color that was selected.</div></div>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1>GxColorPicker</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<img src="data/wColorPicker.png" />
+<h2>Description</h2>
+<p>The <em>GxColorPicker</em> widget is a composite widget that combines a color gradient, a luminance slider and three color channel slider edits. The values of the color gradient and the luminance slider are combined to create a HSL (hue, saturation, luminance) color value. The values of the three color channel slider edits are combined to create an RGB (red, green, blue) color value.</p>
+
+<p>When the user modifies either the HSL controls or the RGB controls, the other controls will be adjusted automatically to match the color values. Regardless of whether HSL or RGB controls are used, the application will receive the color value in RGB format.</p>
+
+<h2>Events</h2>
+
+<div class="event"><div class="id">eChanged</div><p>Emitted when the user changes the color.</p><div class="value">value: GxColorf, the new color that was selected.</div></div>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1>GxDock</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<img src="data/wDock.png" />
+<h2>Description</h2>
+<p>The <em>GxDock</em> widget is a container widget that encapsulates other widgets inside a dock window. The dock window has a title bar with a text label, and a collapse/expand button which allows the user to hide or show the dock contents.</p>
+
+<p>When a dock is embedded inside another container such as a frame or group box, the dock position and size can not be modified by the user. This makes the dock behaviour similar to that of a group box. To allow the user to drag and resize the dock, the dock must be created by using a GxDockArea widget. This is a special container designed for docks; it enhances the dock interaction by allowing the user to z-order docks, to drag and resize docks, and to dock docks by placing them in dock bins.</p>
+
+<h2>Events</h2>
+<p>- none -</p>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1>GxDockArea</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<img src="data/wDockArea.png" />
+<h2>Description</h2>
+<p>The <em>GxDockArea</em> widget is used to create an area in which the user can manipulate dock widgets. The dock area does not have any visual appearance by itself, but the rectangle of the dock area functions as empty space which the user can use to move around the floating docks inside it. The edges of the dock area can also be set up as docking bins, into which the user can drag floating docks in order to dock them.</p>
+
+<p>Note that even though the dock area contains other widgets (docks), it is not a container widget and it does not use a layout object. This is because the dock area is a special container only used for docks. Docks can only be added to it through the <em>AddDock()</em> function, which also establishes a special relation between the dock area and the dock.
+
+<h2>Events</h2>
+<p>- none -</p>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1>GxDroplist</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<img src="data/wDroplist.png" />
+<h2>Description</h2>
+<p>The <em>GxDroplist</em> widget is used to create a button that expands to a vertical list of selectable items. In collapsed form, the droplist is displayed as a button with a text label that displays the currently selected item. When the user clicks the button, the droplist expands to a vertical list that contains all available items, from which the user can select a new item. It emits an event whenever the selected item changes, which occurs when the user selects an item from the list that is different from the current item.</p>
+
+<div class="event"><div class="id">eChanged</div><p>Emitted when the user selects an item on the list that is different from the current item.</p><div class="value">value: int, the index of the item that was selected.</div></div>
+
+<div class="event"><div class="id">eSelected</div><p>Emitted when the user selects any item on the list, including the item that is already selected.</p><div class="value">value: int, the index of the item that was selected.</div></div>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1>GxFrame</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<img src="data/wFrame.png" />
+<h2>Description</h2>
+<p>The <em>GxFrame</em> widget is used to create an area that contains other widgets. It is a very basic extension of the container widget class and does not have any visual appearance. The frame widget comes in three flavors: the <em>GxFrame</em>, which has a free layout as the default layout, the <em>GxFrameV</em>, which has a vertical list layout as the default layout, and the GxFrameH, which has a horizontal list layout as the default layout.</p>
+
+<p>It is also possible to create a frame widget with a custom layout object. When this happens, the frame takes ownership of the layout and will makes sure the layout is deleted when the frame is destroyed or when a new layout is assigned to the frame.</p>
+
+<h2>Events</h2>
+<p>- none -</p>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1>GxGroupbox</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<img src="data/wGroupbox.png" />
+<h2>Description</h2>
+<p>The <em>GxGroupbox</em> widget is used to create a groupbox that contains other widgets. The groupbox displays a text label that describes the contents of the groupbox, and a thin border around the groupbox area. If the collapsable option is enabled, the user can collapse/expand the groupbox by clicking the arrow symbol.</p>
+
+<p>The default appearance of the groupbox is a box with a thin border. By using the <em>SetTabAppearance()</em> function, the groupbox can be switched to tab appearance, which displays the groupbox as if it were a tab and hides the border. This is only a visual effect and does not affect the groupbox behaviour.</p>
+
+<h2>Events</h2>
+<p>- none -</p>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1>GxImageBox</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<img src="data/wImageBox.png" />
+<h2>Description</h2>
+<p>The <em>GxImageBox</em> widget is a non-interactive widget that is used to display an image. When the frame option is enabled, the image box will also display a frame around the image.</p>
+
+<p>The image box will make sure the displayed image fits within the widget rectangle; if the image is too big, the image will be shrunk while maintaining the correct aspect ratio. If the image is smaller than the widget rectangle, the image will be centered and padded with empty space.</p>
+
+<h2>Events</h2>
+<p>- none -</p>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1>GxLabel</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<img src="data/wLabel.png" />
+<h2>Description</h2>
+<p>The <em>GxLabel</em> widget is a non-interactive widget that is used to display a text label. By default, the label is displayed using the text settings from the global gui style, but this can be overwritten with custom text settings by using the <em>SetTextSettings()</em> function.</p>
+
+<p>In usual circumstances, the label text will be displayed as a single line that is vertically centered inside the widget rectangle. However, on longer labels it might be necessary to break the text into multiple lines. If this is the case, the <em>SetMultiLine()</em> function can be used to enable multiline, which ensures the label requests enough space to display the multiple lines of text. If multiline is disabled, the label text is shortened to a single line with ellipsis.</p>
+
+<h2>Events</h2>
+<p>- none -</p>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1>GxRadioButton</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<img src="data/wRadioButton.png" />
+<h2>Description</h2>
+<p>The <em>GxRadioButton</em> widget is used to display a radio button. Similar to checkboxes, radio buttons can be switched on or off. When the user selects a radio button, it emits an event and switches off the previously selected radio button. Radio buttons display a text label on the right side of the button to describe the option they represent.</p>
+
+<p>Radio button widgets are usually creates in groups. Grouping multiple radio buttons together will allow the user to select a single item that group, which is similar to selecting a single item from a droplist or a select list. In GuiX, this is done by assigning them the same group ID by using the <em>SetGroupId()</em> widget function. When a radio button is selected, it will automatically switch off other radio buttons with the same group ID.</p>
+
+<h2>Events</h2>
+
+<div class="event"><div class="id">eSelected</div><p>Emitted when the user selects the radio button.</p><div class="value">value: int, the value associated with the selected button.</div></div>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1>GxScrollArea</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<img src="data/wScrollArea.png" />
+<h2>Description</h2>
+<p>The <em>GxScrollArea</em> widget is a container widget used to encapsulate other widgets into a small view area. The user can navigate the view area by dragging the horizontal and/or vertical scrollbar. If the view area is actually large enough to display the contained widgets, the scrollbars are hidden.</p>
+
+<p>By default, the horizontal and vertical scrollbars are both enabled. By using the <em>SetScrollH()</em> and <em>SetScrollV()</em> functions, both scrollbars can be enabled or disabled. If a scrollbar is disabled, the widgets will be shrunken in that direction if they exceed the available space.
+
+<h2>Events</h2>
+<p>- none -</p>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1>GxScrollbar</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<img src="data/wScrollbar.png" />
+<h2>Description</h2>
+<p>The <em>GxScrollbar</em> widget is used to display a horizontal or vertical scrollbar, with which the user can manipulate a value. It emits an event whenever the user changes the value of the scrollbar. The abstract scrollbar base class is implemented by two widgets: <em>GxScrollbarH</em>, a horizontal scrollbar, and <em>GxScrollbarV</em>, a vertical scrollbar.
+
+<p>There are a few important values associated with the scrollbar. These are the begin, end, scroll range, page size and step size. The following diagram illustrates some of their properties:</p>
+
+<img src="data/scrollbarDiagram.png" class="imgInline" />
+
+<p>The begin and end value define the scroll range. When the bar is on the very left (or top, for vertical bars) the scroll value is equal to begin. When the bar is on the very right (or bottom, for vertical bars) the scroll value is equal to end. The page size is the size of a single page in the scroll region; it is conceptually the portion of the scrollable area that is visible inside the view area. The step size is the size of a single step in the scroll range; it is used when the user presses the scroll buttons on either side of the scroll bar.</p>
+
+<p>Internally, scrollbars always use doubles to store their value. This gives the scrollbar enough precision to be used for both integer values and floating point values. For convenience there are integer overloads of the <em>SetValue()</em>, <em>SetRange()</em> and <em>GetValue()</em> functions. These functions will cast between double and integer using proper rounding.</p>
+
+<h2>Events</h2>
+
+<div class="event"><div class="id">eChanged</div><p>Emitted when the user changes the value of the scrollbar.</p><div class="value">value: double, the new scrollbar value.</div></div>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1>GxSelectList</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<img src="data/wSelectList.png" />
+<h2>Description</h2>
+<p>The <em>GxSelectList</em> widget is used to display a vertical list of selectable items. Unlike the droplist widget, the select list is not collapsed and the list of items is always visible. It emits an event whenever the selected item changes, which occurs when the user selects an item from the list that is different from the current item.</p>
+
+<div class="event"><div class="id">eChanged</div><p>Emitted when the user selects an item on the list that is different from the current item.</p><div class="value">value: int, the index of the item that was selected.</div></div>
+
+<div class="event"><div class="id">eSelected</div><p>Emitted when the user selects any item on the list, including the item that is already selected.</p><div class="value">value: int, the index of the item that was selected.</div></div>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1>GxSeperator</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<img src="data/wSeperator.png" />
+<h2>Description</h2>
+<p>The <em>GxSeperator</em> widget is a non-interactive widget that is used to display a horizontal or vertical seperation line. The seperator widget comes in two variations: <em>GxSeperatorH</em>, a horizontal seperator line, and <em>GxSeperatorV</em>, a vertical seperator line.</p>
+
+<h2>Events</h2>
+<p>- none -</p>
+
+<p><br><br><br><br></p>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1>GxSlider</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<img src="data/wSlider.png" />
+<h2>Description</h2>
+<p>The <em>GxSlider</em> widget is used to display a horizontal or vertical slider, with which the user can manipulate a value. It emits an event whenever the user changes the value of the slider. The abstract slider base class is implemented by two widgets: <em>GxSliderH</em>, a horizontal slider, and <em>GxSliderV</em>, a vertical slider.
+
+<p>Internally, sliders always use doubles to store their value. This gives the slider enough precision to be used for both integer values and floating point values. For convenience there are integer overloads of the <em>SetValue()</em>, <em>SetRange()</em> and <em>GetValue()</em> functions. These functions will cast between double and integer using proper rounding.</p>
+
+<h2>Events</h2>
+
+<div class="event"><div class="id">eChanged</div><p>Emitted when the user changes the value of the slider.</p><div class="value">value: double, the new slider value.</div></div>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1>GxSliderEdit</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<img src="data/wSliderEdit.png" />
+<h2>Description</h2>
+<p>The <em>GxSliderEdit</em> widget is a composite widget that combines a horizontal slider and a spinner. The user can change the value of the slider edit widget by either dragging the slider or entering a value in the spinner. Whenever the user modifies either the slider or spinner control, the other control is adjusted automatically to match the correct value.</p>
+
+<h2>Events</h2>
+
+<div class="event"><div class="id">eChanged</div><p>Emitted when the user changes the slider or spinner value.</p><div class="value">value: double, the new slider/spinner value.</div></div>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1>GxSpacer</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<img src="data/wSpacer.png" />
+<h2>Description</h2>
+<p>The <em>GxSpacer</em> widget is a non-interactive layout widget. It does not have any appearance; it's sole purpose is to create empty space around or inbetween other widgets. This is useful for several purposes such as spacing widgets apart and aligning widgets inside a layout.</p>
+
+<p>By default, spacer widgets have their size policy flagged as expand and will take all space that is not needed by other widgets. The spacer widget comes in two variations: <em>GxSpacerH</em>, a horizontal spacer, and <em>GxSpacerV</em>, a vertical spacer.</p>
+
+<h2>Events</h2>
+<p>- none -</p>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1>GxSpinner</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<img src="data/wSpinner.png" />
+<h2>Description</h2>
+<p>The <em>GxSpinner</em> widget creates a spinner box, with which the user can choose a value. Unlike a slider or scrollbar a spinner can have an arbitrary range and precision, making it useful for editing values that do not have a clearly defined range. The default range of a spinner is -2<sup>24</sup> to 2<sup>24</sup>.
+
+<p>Internally, spinners always use doubles to store their value. This gives the spinner enough precision to be used for both integer values and floating point values. For convenience there are integer overloads of the <em>SetValue()</em>, <em>SetRange()</em> and <em>GetValue()</em> functions. These functions will cast between double and integer using proper rounding.</p>
+
+<h2>Events</h2>
+
+<div class="event"><div class="id">eChanged</div><p>Emitted when the user changes the  spinner value.</p><div class="value">value: double, the new spinner value.</div></div>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1>GxTabs</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<img src="data/wTabs.png" />
+<h2>Description</h2>
+<p>The <em>GxTabs</em> widget is a container widget that contains multiple layouts with other widgets, encapsulated into seperate tabs. It emits an event when the user selects a new tab. The contents of only one tab are visible at at any given time, and the user can switch between tabs by using the tab buttons at the top of the widget. Each tab button displays a text label that describes the contents of the tab.</p>
+
+<h2>Events</h2>
+
+<div class="event"><div class="id">eChanged</div><p>Emitted when the user selects a new tab.</p><div class="value">value: int, the index of the new tab that was selected.</div></div>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1>GxTextEdit</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<img src="data/wTextEdit.png" />
+<h2>Description</h2>
+<p>The <em>GxTextEdit</em> widget is used to display a text box with editable plain text. It supports a variety of features such as hotkeys, copy and pasting to clipboard (through the application system interface), multi-line editing, password setting, filtering for numerical input and custom fonts. It emits an event whenever the user changes the contents.</p>
+
+<p>The text edit widget comes in two variations: <em>GxTextEdit</em>, a multi-line text edit field, and <em>GxLineEdit</em>, a single line text edit field. Internally the only difference between the two is a flag enabling multi-line editing; the seperate classes are available purely for convenience.</p>
+
+<h2>Events</h2>
+
+<div class="event"><div class="id">eChanged</div><p>Emitted when the user changes the text.</p><div class="value">value: string, the new contents of the text box.</div></div>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1>GxVectorEdit</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<img src="data/wVectorEdit.png" />
+<h2>Description</h2>
+<p>The <em>GxVectorEdit</em> widgets are expandable widgets for editing a 2D, 3D or 4D vector. In collapsed form, the vector edit displays a button that shows the components of the current vector. When pressed, the button expands to a list of spinners which can be used to modify the components of the vector. Unlike the <em>GxDirectionEdit</em> widget, the vector edit vector is not normalized and the initial value range is arbitrarily large (see GxSpinner). A new range can be specified with the <em>SetRange()</em> function.</p>
+<h2>Events</h2>
+
+<div class="event"><div class="id">eChanged</div><p>Emitted when the user changes the vector.</p><div class="value">value: GxVec2f/GxVec3f/GxVec4f, the new vector that was selected.</div></div>
+
+</div> <!-- section -->
+</body>
+</html>

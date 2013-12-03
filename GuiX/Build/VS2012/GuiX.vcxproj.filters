@@ -1,0 +1,378 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\..\Source\GuiX\Src\Canvas.cpp">
+      <Filter>Graphics\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\DrawImp.cpp">
+      <Filter>Graphics\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\Sprites.cpp">
+      <Filter>Graphics\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\TextImp.cpp">
+      <Filter>Graphics\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\TextureImp.cpp">
+      <Filter>Graphics\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\wDock.cpp">
+      <Filter>Containers\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\wFrame.cpp">
+      <Filter>Containers\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\wGroupbox.cpp">
+      <Filter>Containers\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\wScrollArea.cpp">
+      <Filter>Containers\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\wTabs.cpp">
+      <Filter>Containers\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\CoreImp.cpp">
+      <Filter>Core\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\InputImp.cpp">
+      <Filter>Core\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\Interfaces.cpp">
+      <Filter>Core\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\LocalizeImp.cpp">
+      <Filter>Core\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\String.cpp">
+      <Filter>Core\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\Variant.cpp">
+      <Filter>Core\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\Xml.cpp">
+      <Filter>Core\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\Container.cpp">
+      <Filter>Gui\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\ContextImp.cpp">
+      <Filter>Gui\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\Layout.cpp">
+      <Filter>Gui\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\styleImp.cpp">
+      <Filter>Gui\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\Widget.cpp">
+      <Filter>Gui\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\WidgetDatabase.cpp">
+      <Filter>Gui\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\FreeLayout.cpp">
+      <Filter>Layouts\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\GridLayout.cpp">
+      <Filter>Layouts\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\ListLayout.cpp">
+      <Filter>Layouts\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\wButton.cpp">
+      <Filter>Widgets\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\wCheckbox.cpp">
+      <Filter>Widgets\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\wColorEdit.cpp">
+      <Filter>Widgets\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\wColorPicker.cpp">
+      <Filter>Widgets\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\wDroplist.cpp">
+      <Filter>Widgets\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\wExpandingButton.cpp">
+      <Filter>Widgets\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\wImageBox.cpp">
+      <Filter>Widgets\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\wLabel.cpp">
+      <Filter>Widgets\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\wRadioButton.cpp">
+      <Filter>Widgets\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\wScrollbar.cpp">
+      <Filter>Widgets\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\wSelectList.cpp">
+      <Filter>Widgets\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\wSeperator.cpp">
+      <Filter>Widgets\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\wSlider.cpp">
+      <Filter>Widgets\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\wSliderEdit.cpp">
+      <Filter>Widgets\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\wSliderRange.cpp">
+      <Filter>Widgets\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\wSpacer.cpp">
+      <Filter>Widgets\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\wSpinner.cpp">
+      <Filter>Widgets\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\wTextEdit.cpp">
+      <Filter>Widgets\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\wVectorEdit.cpp">
+      <Filter>Widgets\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\Font.cpp">
+      <Filter>Graphics\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GuiX\Src\ResourcesImp.cpp">
+      <Filter>Core\Src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\Config.h" />
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wVectorEdit.h">
+      <Filter>Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wImageBox.h">
+      <Filter>Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wLabel.h">
+      <Filter>Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wRadioButton.h">
+      <Filter>Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wScrollbar.h">
+      <Filter>Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wSelectList.h">
+      <Filter>Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wSeperator.h">
+      <Filter>Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wSlider.h">
+      <Filter>Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wSliderEdit.h">
+      <Filter>Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wSliderRange.h">
+      <Filter>Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wSpacer.h">
+      <Filter>Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wSpinner.h">
+      <Filter>Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wTextEdit.h">
+      <Filter>Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wButton.h">
+      <Filter>Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wCheckbox.h">
+      <Filter>Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wColorEdit.h">
+      <Filter>Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wColorPicker.h">
+      <Filter>Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wDroplist.h">
+      <Filter>Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wExpandingButton.h">
+      <Filter>Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\Canvas.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\Draw.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GuiX\Src\DrawImp.h">
+      <Filter>Graphics\Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\Sprites.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\Text.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\Texture.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GuiX\Src\TextImp.h">
+      <Filter>Graphics\Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GuiX\Src\TextureImp.h">
+      <Filter>Graphics\Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GuiX\Src\ResourceMap.h">
+      <Filter>Graphics\Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wDock.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wFrame.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wGroupbox.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wScrollArea.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\wTabs.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\Common.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\List.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\Core.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GuiX\Src\CoreImp.h">
+      <Filter>Core\Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GuiX\Src\InputImp.h">
+      <Filter>Core\Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GuiX\Src\LocalizeImp.h">
+      <Filter>Core\Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GuiX\Src\Xml.h">
+      <Filter>Core\Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\Variant.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\Interfaces.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\Input.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\Localize.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\String.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\Container.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\Context.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GuiX\Src\ContextImp.h">
+      <Filter>Gui\Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\Layout.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\Style.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GuiX\Src\StyleImp.h">
+      <Filter>Gui\Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\Widget.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\Widgets.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GuiX\Src\WidgetDatabase.h">
+      <Filter>Gui\Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\FreeLayout.h">
+      <Filter>Layouts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\GridLayout.h">
+      <Filter>Layouts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\ListLayout.h">
+      <Filter>Layouts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GuiX\Src\GuiUtils.h">
+      <Filter>Gui\Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GuiX\Src\ResourcesImp.h">
+      <Filter>Core\Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\GuiX\GuiX\Resources.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Include\GuiX\GuiX\Common.inl">
+      <Filter>Core\Inline</Filter>
+    </None>
+    <None Include="..\..\Include\GuiX\GuiX\List.inl">
+      <Filter>Core\Inline</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Containers">
+      <UniqueIdentifier>{c5ee1f71-0351-481f-9479-60a40608e60b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{4d0c0fd2-51d0-4cc6-9e34-8405dd940d6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{e6285d1e-e6f2-4ab0-bcfe-a7c34155422d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Gui">
+      <UniqueIdentifier>{c236055e-1bef-4cc6-8e59-4a7be7b8180c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Layouts">
+      <UniqueIdentifier>{d3861268-84bd-49a0-927b-cc70a6fc8390}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Widgets">
+      <UniqueIdentifier>{c4596cef-8d1d-41a6-b01c-ddcd795389da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Containers\Src">
+      <UniqueIdentifier>{e8cc1a39-4d15-4005-8485-f468f293f431}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Src">
+      <UniqueIdentifier>{748b7710-f293-4575-a387-1721245bd0f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Src">
+      <UniqueIdentifier>{90647465-c1ec-4a51-8fb7-d51201c23fbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Gui\Src">
+      <UniqueIdentifier>{0bdb6c78-1e69-4b3c-b7d3-bcf4728fdf8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Layouts\Src">
+      <UniqueIdentifier>{9acfb13b-7827-4b42-97d6-69920bf1ebaa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Widgets\Src">
+      <UniqueIdentifier>{5e1dacd9-e0fe-47e3-8eda-f7a2cc9daad1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Inline">
+      <UniqueIdentifier>{1aec0360-0ece-4bec-8df2-19523e2bda2a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
