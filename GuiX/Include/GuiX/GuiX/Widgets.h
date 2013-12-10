@@ -12,6 +12,7 @@
 #include <GuiX/wDroplist.h>
 #include <GuiX/wImageBox.h>
 #include <GuiX/wLabel.h>
+#include <GuiX/wProgressBar.h>
 #include <GuiX/wRadioButton.h>
 #include <GuiX/wScrollbar.h>
 #include <GuiX/wSelectList.h>

@@ -10,23 +10,23 @@ namespace core {
 // GxResources
 // ===================================================================================
 
-class GxResources
+class GUIX_API GxResources
 {
 public:
 	/// Texture resource, contains information for loading a texture.
-	struct TextureRes
+	struct GUIX_API TextureRes
 	{
 		GxString path;
 	};
 
 	/// Font resource, contains information for loading a font.
-	struct FontRes
+	struct GUIX_API FontRes
 	{
 		GxString path;
 	};
 
 	/// Translation resource, contains information for loading translation files.
-	struct TranslationsRes
+	struct GUIX_API TranslationsRes
 	{
 		GxList<GxString> paths;
 	};
